@@ -105,11 +105,7 @@ const CANTIDAD_VIDEOS = 5; //cantidad de iteraciones al dar "Me gusta" en los vi
   await fillField(
     page,
     "div.css-1asq5wp-DivSearchFormContainer.e1hi1cmj0:nth-child(2) form input",
-<<<<<<< HEAD
     CUENTA_A_BUSCAR
-=======
-    "importadoramiranda777"
->>>>>>> 4db0cc28290e07298689cbf1299f1ff61c004d16
   );
   await page.keyboard.press("Enter");
   await waitForPageLoad(page);
@@ -134,11 +130,7 @@ const CANTIDAD_VIDEOS = 5; //cantidad de iteraciones al dar "Me gusta" en los vi
   );
 
   //hacer scroll en lo videos y darle "me gusta" en 10 videos
-<<<<<<< HEAD
   for (let i = 1; i <= CANTIDAD_VIDEOS; i++) {
-=======
-  for (let i = 1; i < 10; i++) {
->>>>>>> 4db0cc28290e07298689cbf1299f1ff61c004d16
     await waitForPageLoad(page);
     await page.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
 
