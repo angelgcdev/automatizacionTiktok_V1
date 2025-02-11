@@ -3,7 +3,7 @@ import { getRandomDelay } from "./utils/getRandomDelay.js";
 import { clickOnSelector } from "./utils/clickOnSelector.js";
 import { fillField } from "./utils/fillField.js";
 import { waitForPageLoad } from "./utils/waitForPageLoad.js";
-import { loginToFacebook } from "./utils/loginToFacebook.js";
+// import { loginToFacebook } from "./utils/loginToFacebook.js";
 // console.log(devices);
 
 // variables y constantes
@@ -104,7 +104,7 @@ const facebookAccount = {
   await fillField(
     page,
     "div.css-1asq5wp-DivSearchFormContainer.e1hi1cmj0:nth-child(2) form input",
-    "angelgcdev"
+    "importadoramiranda777"
   );
   await page.keyboard.press("Enter");
   await waitForPageLoad(page);
@@ -120,34 +120,31 @@ const facebookAccount = {
   await waitForPageLoad(page);
   await page.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
 
+  //
+
   //Hacer click en el primer video
   await clickOnSelector(
     page,
-    "div[data-e2e='user-post-item-list'] > div:nth-child(2)"
+    "div[data-e2e='user-post-item-list'] > div:nth-child(1)"
   );
-  await waitForPageLoad(page);
-  await page.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
 
-  //Hacer click en el boton me encanta
-  await clickOnSelector(
-    page,
-    "div.css-1d39a26-DivFlexCenterRow.ehlq8k31 > button:nth-child(1)"
-  );
-  await page.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
+  //hacer scroll en lo videos y darle "me gusta" en 10 videos
+  for (let i = 1; i < 10; i++) {
+    await waitForPageLoad(page);
+    await page.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
 
-  //Hacer click en compartir en Facebook
-  const [pageFacebook] = await Promise.all([
-    page.waitForEvent("popup"),
-    await clickOnSelector(page, "#icon-element-facebook"),
-  ]);
-  await pageFacebook.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
+    //Hacer click en el boton "Me Gusta"
+    await clickOnSelector(
+      page,
+      "div.css-1d39a26-DivFlexCenterRow.ehlq8k31 > button:nth-child(1)"
+    );
+    await page.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
 
-  //Iniciar sesion en Facebook
-  await loginToFacebook(pageFacebook, facebookAccount);
+    //Click en el boton 'Ir al siguiente video'
+    await clickOnSelector(page, 'button[aria-label="Ir al siguiente vídeo"]');
+    await waitForPageLoad(page);
+    await page.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
 
-  //Hacer click en "compartir" facebook
-  //Hacer click en la primera opcion de usuarios
-  await clickOnSelector(pageFacebook, "div[aria-label='Compartir']");
-  await waitForPageLoad(pageFacebook);
-  await pageFacebook.waitForTimeout(getRandomDelay(MIN_DELAY, MAX_DELAY));
+    console.log("Scroll: ", i);
+  }
 })();
