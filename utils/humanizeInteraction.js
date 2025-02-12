@@ -1,6 +1,6 @@
 import { getRandomDelay } from "./getRandomDelay.js";
 
-const MIN_DELAY = 3000; // Minimo tiempo de espera en milisegundos
+const MIN_DELAY = 2000; // Minimo tiempo de espera en milisegundos
 const MAX_DELAY = 7000; // Máximo tiempo de espera en milisegundos
 
 //Funcion para simular pausas y movimientos del mouse
